@@ -2,8 +2,12 @@ package com.lba.jwt.repository;
 
 import java.util.Date;
 
+import javax.security.auth.message.config.AuthConfig;
+
+import org.springframework.boot.autoconfigure.security.oauth2.client.OAuth2ClientProperties;
 import org.springframework.stereotype.Component;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
@@ -27,7 +31,16 @@ public class JwtImplementation implements IJwt {
 
 	@Override
 	public boolean validateJwt(String jwt) {
-		// TODO Auto-generated method stub
+
+		Claims claim;
+		
+		claim = (Claims) Jwts.parser()
+				.setSigningKey("hola")
+				.parse(jwt)
+				.getBody();
+		
+		claim.get("exp");
+		claim.get("userId");
 		return false;
 	}
 

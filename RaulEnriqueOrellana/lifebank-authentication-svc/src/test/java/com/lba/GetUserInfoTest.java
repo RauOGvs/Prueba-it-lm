@@ -28,7 +28,7 @@ public class GetUserInfoTest {
 		request.setIntentos(0);
 		request.setIp("0.8.8.8");
 		request.setUserId("rorellana");
-		request.setPassword("asdasda");
+		request.setPassword("c0nexion1$");
 		process.getInfo(request);
 		
 	}
