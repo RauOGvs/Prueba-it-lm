@@ -19,14 +19,14 @@ public class UsrUserSession implements Serializable {
 	private String uusSessionId;
 
 	@Column(name="usr_uss_status")
-	private String usrUssStatus;
+	private Integer usrUssStatus;
 
 	@Column(name="uus_token")
 	private String uusToken;
 
 	//bi-directional many-to-one association to UsrUser
 	@ManyToOne
-	@JoinColumn(name="usr_user_id")
+	@JoinColumn(name="usr_user_name_id")
 	private UsrUser usrUser;
 
 	public UsrUserSession() {
@@ -40,11 +40,11 @@ public class UsrUserSession implements Serializable {
 		this.uusSessionId = uusSessionId;
 	}
 
-	public String getUsrUssStatus() {
+	public Integer getUsrUssStatus() {
 		return this.usrUssStatus;
 	}
 
-	public void setUsrUssStatus(String usrUssStatus) {
+	public void setUsrUssStatus(Integer usrUssStatus) {
 		this.usrUssStatus = usrUssStatus;
 	}
 

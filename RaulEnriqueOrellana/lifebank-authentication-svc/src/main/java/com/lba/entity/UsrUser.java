@@ -16,17 +16,17 @@ public class UsrUser implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="usr_user_id")
-	private String usrUserId;
+	@Column(name="usr_user_name")
+	private String usrUserName;
+
+	@Column(name="usr_first_name")
+	private String usrFirstName;
 
 	@Column(name="usr_password")
 	private String usrPassword;
 
 	@Column(name="usr_second_name")
 	private String usrSecondName;
-
-	@Column(name="usr_user_name")
-	private String usrUserName;
 
 	//bi-directional many-to-one association to UsrUserSession
 	@OneToMany(mappedBy="usrUser")
@@ -35,12 +35,20 @@ public class UsrUser implements Serializable {
 	public UsrUser() {
 	}
 
-	public String getUsrUserId() {
-		return this.usrUserId;
+	public String getUsrUserName() {
+		return this.usrUserName;
 	}
 
-	public void setUsrUserId(String usrUserId) {
-		this.usrUserId = usrUserId;
+	public void setUsrUserName(String usrUserName) {
+		this.usrUserName = usrUserName;
+	}
+
+	public String getUsrFirstName() {
+		return this.usrFirstName;
+	}
+
+	public void setUsrFirstName(String usrFirstName) {
+		this.usrFirstName = usrFirstName;
 	}
 
 	public String getUsrPassword() {
@@ -57,14 +65,6 @@ public class UsrUser implements Serializable {
 
 	public void setUsrSecondName(String usrSecondName) {
 		this.usrSecondName = usrSecondName;
-	}
-
-	public String getUsrUserName() {
-		return this.usrUserName;
-	}
-
-	public void setUsrUserName(String usrUserName) {
-		this.usrUserName = usrUserName;
 	}
 
 	public List<UsrUserSession> getUsrUserSessions() {
