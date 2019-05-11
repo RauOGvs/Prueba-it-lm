@@ -2,16 +2,9 @@ package com.lba.service.getinfo.request;
 
 public class UserInfoRequest {
 	
-	private int intentos;
 	private String userId;
 	private String password;
 	private String ip;
-	public int getIntentos() {
-		return intentos;
-	}
-	public void setIntentos(int intentos) {
-		this.intentos = intentos;
-	}
 	public String getUserId() {
 		return userId;
 	}

@@ -2,6 +2,7 @@ package com.lba.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 
 /**
@@ -15,11 +16,15 @@ public class UsrUserSession implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="uus_session_id")
-	private String uusSessionId;
+	private Integer uusSessionId;
 
-	@Column(name="usr_uss_status")
-	private Integer usrUssStatus;
+	@Column(name="uus_session_date")
+	private Timestamp uusSessionDate;
+
+	@Column(name="uus_session_status")
+	private Integer uusSessionStatus;
 
 	@Column(name="uus_token")
 	private String uusToken;
@@ -32,20 +37,28 @@ public class UsrUserSession implements Serializable {
 	public UsrUserSession() {
 	}
 
-	public String getUusSessionId() {
+	public Integer getUusSessionId() {
 		return this.uusSessionId;
 	}
 
-	public void setUusSessionId(String uusSessionId) {
+	public void setUusSessionId(Integer uusSessionId) {
 		this.uusSessionId = uusSessionId;
 	}
 
-	public Integer getUsrUssStatus() {
-		return this.usrUssStatus;
+	public Timestamp getUusSessionDate() {
+		return this.uusSessionDate;
 	}
 
-	public void setUsrUssStatus(Integer usrUssStatus) {
-		this.usrUssStatus = usrUssStatus;
+	public void setUusSessionDate(Timestamp uusSessionDate) {
+		this.uusSessionDate = uusSessionDate;
+	}
+
+	public Integer getUusSessionStatus() {
+		return this.uusSessionStatus;
+	}
+
+	public void setUusSessionStatus(Integer uusSessionStatus) {
+		this.uusSessionStatus = uusSessionStatus;
 	}
 
 	public String getUusToken() {

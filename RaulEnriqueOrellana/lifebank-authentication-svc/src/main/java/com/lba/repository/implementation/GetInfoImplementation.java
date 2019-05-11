@@ -1,4 +1,4 @@
-package com.lba.repository;
+package com.lba.repository.implementation;
 
 import java.util.Optional;
 
@@ -7,14 +7,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import com.lba.entity.UsrUser;
+import com.lba.repository.IGetInfo;
 
 @Component
-public class GetInfoRepositoryImplementation {
+public class GetInfoImplementation {
 
 	private IGetInfo getInfo;
 	private Logger log;
 
-	public GetInfoRepositoryImplementation(IGetInfo getInfo) {
+	public GetInfoImplementation(IGetInfo getInfo) {
 		this.log = LoggerFactory.getLogger(getClass());
 		this.getInfo = getInfo;
 	}
@@ -28,5 +29,15 @@ public class GetInfoRepositoryImplementation {
 		}
 		return null;
 
+	}
+	public boolean updateStatus(UsrUser user) {
+		
+		return getInfo.save(user) != null ? true:false;
+		
+	}
+public boolean save(UsrUser user) {
+		
+		return getInfo.save(user) != null ? true:false;
+		
 	}
 }
