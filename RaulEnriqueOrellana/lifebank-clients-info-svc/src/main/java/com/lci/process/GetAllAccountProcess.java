@@ -50,21 +50,21 @@ public class GetAllAccountProcess {
 					switch (c.getAccountTypeDetail().getTypeAccount().getCcTypeAccountName()) {
 
 					case "loan": {
-						loan.setId(String.valueOf(c.getAccountTypeDetail().getCcAccountTypeDetailId()));
+						loan.setId(String.valueOf(c.getAccountTypeDetail().getClientAccounts().get(0).getCcClientAccountId()));
 						loan.setName(c.getAccountTypeDetail().getCcAccountTypeDetailName());
 						listLoan.add(loan);
 						loan = new Loan();
 						break;
 					}
 					case "creditCards": {
-						cCard.setId(String.valueOf(c.getAccountTypeDetail().getCcAccountTypeDetailId()));
+						cCard.setId(String.valueOf(c.getAccountTypeDetail().getClientAccounts().get(0).getCcClientAccountId()));
 						cCard.setName(c.getAccountTypeDetail().getCcAccountTypeDetailName());
 						listCredit.add(cCard);
 						cCard = new CreditCard();
 						break;
 					}
 					case "personal": {
-						personal.setId(String.valueOf(c.getAccountTypeDetail().getCcAccountTypeDetailId()));
+						personal.setId(String.valueOf(c.getAccountTypeDetail().getClientAccounts().get(0).getCcClientAccountId()));
 						personal.setName(c.getAccountTypeDetail().getCcAccountTypeDetailName());
 						listPersonals.add(personal);
 						personal = new Personal();
