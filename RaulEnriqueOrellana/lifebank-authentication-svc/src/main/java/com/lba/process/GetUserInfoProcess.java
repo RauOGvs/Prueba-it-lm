@@ -46,9 +46,10 @@ public class GetUserInfoProcess {
 		
 		try {
 			UsrUser user = getInfo.getInfoUser(request.getUserId());
-			Long totalIntentos = getSession.findByUsrUserAndUusSesssionDateAndUusSessionStatus(user.getUsrUserName(), 0);
+			
 			if (user != null && user.getUsrStatus()==1) {
 				ResponseJwt response = new ResponseJwt();
+				Long totalIntentos = getSession.findByUsrUserAndUusSesssionDateAndUusSessionStatus(user.getUsrUserName(), 0);
 				String hash = getHashSHA512(request.getPassword(), request.getUserId());
 				log.info("pass: {}", hash);
 				if (hash.equals(user.getUsrPassword()) && request.getUserId().equals(user.getUsrUserName())) {
@@ -103,8 +104,10 @@ public class GetUserInfoProcess {
 		try {
 			byte[] encodeUserID = Base64.encodeBase64(userID.getBytes());
 			String encodeUserId = new String(encodeUserID);
+//			log.info("USERID:{} --> Encriptado: {}", userID, encodeUserId);
 			byte[] encodePass = Base64.encodeBase64(password.getBytes());
 			String encodePassword = new String(encodePass);
+//			log.info("PASS:{} --> Encriptado: {}", password, encodePassword);
 			StringBuilder sb = new StringBuilder();
 			sb.append(encodeUserId)
 			.append(encodePassword);
