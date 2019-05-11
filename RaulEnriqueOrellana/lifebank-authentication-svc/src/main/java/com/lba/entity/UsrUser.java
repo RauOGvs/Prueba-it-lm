@@ -16,6 +16,7 @@ public class UsrUser implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="usr_user_name")
 	private String usrUserName;
 
@@ -27,6 +28,9 @@ public class UsrUser implements Serializable {
 
 	@Column(name="usr_second_name")
 	private String usrSecondName;
+
+	@Column(name="usr_status")
+	private Integer usrStatus;
 
 	//bi-directional many-to-one association to UsrUserSession
 	@OneToMany(mappedBy="usrUser")
@@ -65,6 +69,14 @@ public class UsrUser implements Serializable {
 
 	public void setUsrSecondName(String usrSecondName) {
 		this.usrSecondName = usrSecondName;
+	}
+
+	public Integer getUsrStatus() {
+		return this.usrStatus;
+	}
+
+	public void setUsrStatus(Integer usrStatus) {
+		this.usrStatus = usrStatus;
 	}
 
 	public List<UsrUserSession> getUsrUserSessions() {
