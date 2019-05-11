@@ -1,4 +1,4 @@
-package com.lbi;
+package com.lci;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

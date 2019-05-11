@@ -6,6 +6,7 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.binary.Hex;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -96,11 +97,19 @@ public class GetUserInfoProcess {
 		
 	}
 
-	private String getHashSHA512(String StringToHash, String salt) {
+	private String getHashSHA512(String password, String userID) {
 		String generatedPassword = null;
+		
 		try {
+			byte[] encodeUserID = Base64.encodeBase64(userID.getBytes());
+			String encodeUserId = new String(encodeUserID);
+			byte[] encodePass = Base64.encodeBase64(password.getBytes());
+			String encodePassword = new String(encodePass);
+			StringBuilder sb = new StringBuilder();
+			sb.append(encodeUserId)
+			.append(encodePassword);
 			MessageDigest md = MessageDigest.getInstance("SHA-512");
-			byte[] bytes = md.digest(StringToHash.getBytes(StandardCharsets.UTF_8));
+			byte[] bytes = md.digest(sb.toString().getBytes(StandardCharsets.UTF_8));
 			generatedPassword = Hex.encodeHexString(bytes);
 		} catch (NoSuchAlgorithmException e) {
 			log.error("Microservicio lifebank-authentication-svc:  error: {} en linea: {} en metodo: {}", e,

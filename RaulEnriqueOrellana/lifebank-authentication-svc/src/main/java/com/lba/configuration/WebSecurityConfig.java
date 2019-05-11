@@ -21,7 +21,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //		
 		http
         .authorizeRequests()
-        .antMatchers("/auth/getInfo/**").permitAll()
+        .antMatchers("/auth/getInfo/**", "/auth/validate/**").permitAll()
 //            .antMatchers("/validate/**", "/css/**", "/images/**", "/js/**", "/angularjs/**", "/ngModules/**", "/components/**", "/controllers/**").permitAll()
            .anyRequest().fullyAuthenticated();
 //		
@@ -48,6 +48,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //
 //		web.ignoring().antMatchers(HttpMethod.POST, loginUrl);
 		web.ignoring().antMatchers(HttpMethod.POST, "/getInfo");
+		web.ignoring().antMatchers(HttpMethod.GET, "/validate");
 		web.ignoring().antMatchers(HttpMethod.GET, "/health");
 //		web.ignoring().antMatchers(HttpMethod.POST, "/validate");
 //		web.ignoring().antMatchers(HttpMethod.POST, validationUrl);
