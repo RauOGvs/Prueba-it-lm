@@ -78,7 +78,7 @@ public class GetAllAccountProcess {
 				accounts.setCreditCard(listCredit);
 				accounts.setPersonal(listPersonals);
 				response.setAccounts(accounts);
-				log.info("response: {}", new ObjectMapper().writeValueAsString(response));
+				log.info("Response transactions: {}", new ObjectMapper().writeValueAsString(response));
 				return new ValueResponse<AccountClientPojo>("200", response, "SUCCESS");
 			}else
 				return new ValueResponse<AccountClientPojo>("201", null, "NO DATA");

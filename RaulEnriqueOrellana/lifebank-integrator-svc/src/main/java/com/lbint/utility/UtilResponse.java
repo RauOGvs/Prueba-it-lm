@@ -15,6 +15,9 @@ public class UtilResponse {
 		case 440: {
 			return new ResponseEntity<>(null, HttpStatus.resolve(410));
 		}
+		case 404: {
+			return new ResponseEntity<>(null, HttpStatus.resolve(404));
+		}
 		default:
 			return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
 		}

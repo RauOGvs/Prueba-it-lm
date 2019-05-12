@@ -1,6 +1,5 @@
 package com.lci;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.junit.Test;
@@ -12,7 +11,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.lci.entity.AccountTrasaction;
 import com.lci.process.GetTransactionClientProcess;
 import com.lci.repository.ITransactions;
-import com.lci.utility.DateUtil;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

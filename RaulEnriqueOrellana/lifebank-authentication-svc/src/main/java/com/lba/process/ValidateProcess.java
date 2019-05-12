@@ -23,21 +23,22 @@ public class ValidateProcess {
 	public ValueResponse<Integer> validateProcess(String jwt, String ip) {
 
 		ValueResponse<Integer> response = null;
-		Integer result = 0;
+		ValueResponse<Integer>  result = null;
+		Integer val =0;
 		String message = "";
 		try {
 			log.info("Entrada a validateJWT: jwt: {} IP: {}", jwt, ip);
 			result = ijwt.validateJwt(jwt, ip);
 			message = "";
-
-			switch (result) {
+			val = result.getValue();
+			switch (val) {
 
 			case 403: {
 				message = "IP or signature was changed";
 				break;
 			}
 			case 200: {
-				message = "SUCCESS";
+				message = result.getMessage();
 				break;
 			}
 			case 440: {
@@ -47,12 +48,12 @@ public class ValidateProcess {
 			default:
 				message = "NO DATA";
 			}
-			response = new ValueResponse<Integer>("200", result, message);
+			response = new ValueResponse<Integer>("200", val, message);
 			log.info("Response validate jwt: {}", new ObjectMapper().writeValueAsString(response));
 		} catch (Exception e) {
 			log.error("Microservicio lifebank-authentication-svc:  error: {} en linea: {} en metodo: {}", e,
 					e.getStackTrace()[0].getLineNumber(), e.getStackTrace()[0].getMethodName());
-			response = new ValueResponse<Integer>("201", result, message);
+			response = new ValueResponse<Integer>("201", val, message);
 		}
 		return response;
 	}

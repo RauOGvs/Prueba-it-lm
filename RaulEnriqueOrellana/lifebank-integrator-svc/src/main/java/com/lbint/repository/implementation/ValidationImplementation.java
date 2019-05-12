@@ -38,7 +38,7 @@ public class ValidationImplementation implements IValidation {
 	}
 
 	@Override
-	public Integer isValidaToken(String header, String ip) {
+	public ValueResponse<Integer> isValidaToken(String header, String ip) {
 		try {
 			String[] headers = header.split(" ");
 			String jwt = headers[1];
@@ -54,8 +54,8 @@ public class ValidationImplementation implements IValidation {
 					});
 			log.info("Response validation of jwt: {}", new ObjectMapper().writeValueAsString(response));
 
-			if (response != null && "200".contentEquals(response.getResponseCode())) {
-				return response.getValue();
+			if (response != null && "200".equals(response.getResponseCode())) {
+				return response;
 			}
 		} catch (Exception e) {
 			log.error("Microservicio lifebank-integrator-svc:  error: {} en linea: {} en metodo: {}", e,

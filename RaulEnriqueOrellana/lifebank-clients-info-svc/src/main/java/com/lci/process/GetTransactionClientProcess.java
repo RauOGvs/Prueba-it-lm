@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lci.entity.AccountTrasaction;
 import com.lci.repository.ITransactions;
 import com.lci.response.ValueResponse;
@@ -49,6 +50,7 @@ public class GetTransactionClientProcess {
 				accountPojo.setStartDate(initDate);
 				accountPojo.setId(accountID);
 				accountPojo.setTransactions(listT);
+				log.info("response: {}", new ObjectMapper().writeValueAsString(accountPojo));
 				return new ValueResponse<AccountTransactionPojo>("200", accountPojo, "OK");
 			}
 		} catch (Exception e) {

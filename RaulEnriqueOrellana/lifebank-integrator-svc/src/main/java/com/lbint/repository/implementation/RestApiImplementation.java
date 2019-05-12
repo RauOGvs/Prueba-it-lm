@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lbint.repository.IRestAPI;
 import com.lbint.response.repository.ValueResponse;
 import com.lbint.service.pojo.response.AccountClientPojo;
+import com.lbint.service.pojo.response.AccountTransactionPojo;
 import com.lbint.utility.RestAPI;
 
 @Component
@@ -38,7 +39,56 @@ public class RestApiImplementation implements IRestAPI {
 					});
 			log.info("Response getAccount: {}", new ObjectMapper().writeValueAsString(response));
 
-			if (response != null && "200".contentEquals(response.getResponseCode())) {
+			if (response != null && "200".equals(response.getResponseCode())) {
+				return response.getValue();
+			}
+		} catch (Exception e) {
+			log.error("Microservicio lifebank-integrator-svc:  error: {} en linea: {} en metodo: {}", e,
+					e.getStackTrace()[0].getLineNumber(), e.getStackTrace()[0].getMethodName());
+		}
+		return null;
+	}
+
+	@Override
+	public AccountTransactionPojo getTrasactions(String... param) {
+		try {
+			StringBuilder url = new StringBuilder();
+			url.append(env.getProperty("service.url.transactions"))
+			.append("/")
+			.append(param[0])
+			.append("/")
+			.append(param[1])
+			.append("/")
+			.append(param[2]);
+			log.info("Request transaction: accountID: {},startDate: {}, endDate: {}",param[0],param[1],param[2]);
+			ValueResponse<AccountTransactionPojo> response = restAPI.call(url.toString(), HttpMethod.GET,
+					null, new ParameterizedTypeReference<ValueResponse<AccountTransactionPojo>>() {
+					});
+			log.info("Response getTransaction: {}", new ObjectMapper().writeValueAsString(response));
+
+			if (response != null && "200".equals(response.getResponseCode())) {
+				return response.getValue();
+			}
+		} catch (Exception e) {
+			log.error("Microservicio lifebank-integrator-svc:  error: {} en linea: {} en metodo: {}", e,
+					e.getStackTrace()[0].getLineNumber(), e.getStackTrace()[0].getMethodName());
+		}
+		return null;
+	}
+
+	@Override
+	public String validateAccount(String... params) {
+		try {
+			StringBuilder url = new StringBuilder();
+			url.append(env.getProperty("service.url.validate-account"))
+			.append("/")
+			.append(params[0]);
+			ValueResponse<String> response = restAPI.call(url.toString(), HttpMethod.GET,
+					null, new ParameterizedTypeReference<ValueResponse<String>>() {
+					});
+			log.info("Response validateAccount: {}", new ObjectMapper().writeValueAsString(response));
+
+			if (response != null && "200".equals(response.getResponseCode())) {
 				return response.getValue();
 			}
 		} catch (Exception e) {
