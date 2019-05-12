@@ -2,6 +2,7 @@ package com.lci.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
@@ -18,6 +19,10 @@ public class ClientAccount implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="cc_client_account_id")
 	private String ccClientAccountId;
+
+	//bi-directional many-to-one association to AccountTrasaction
+	@OneToMany(mappedBy="clientAccount")
+	private List<AccountTrasaction> accountTrasactions;
 
 	//bi-directional many-to-one association to AccountTypeDetail
 	@ManyToOne
@@ -38,6 +43,28 @@ public class ClientAccount implements Serializable {
 
 	public void setCcClientAccountId(String ccClientAccountId) {
 		this.ccClientAccountId = ccClientAccountId;
+	}
+
+	public List<AccountTrasaction> getAccountTrasactions() {
+		return this.accountTrasactions;
+	}
+
+	public void setAccountTrasactions(List<AccountTrasaction> accountTrasactions) {
+		this.accountTrasactions = accountTrasactions;
+	}
+
+	public AccountTrasaction addAccountTrasaction(AccountTrasaction accountTrasaction) {
+		getAccountTrasactions().add(accountTrasaction);
+		accountTrasaction.setClientAccount(this);
+
+		return accountTrasaction;
+	}
+
+	public AccountTrasaction removeAccountTrasaction(AccountTrasaction accountTrasaction) {
+		getAccountTrasactions().remove(accountTrasaction);
+		accountTrasaction.setClientAccount(null);
+
+		return accountTrasaction;
 	}
 
 	public AccountTypeDetail getAccountTypeDetail() {

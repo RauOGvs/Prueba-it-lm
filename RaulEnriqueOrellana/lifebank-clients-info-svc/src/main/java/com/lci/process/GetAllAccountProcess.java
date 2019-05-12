@@ -11,7 +11,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lci.entity.Client;
 import com.lci.entity.ClientAccount;
-import com.lci.repository.GetAccountsImplementation;
+import com.lci.repository.implementation.GetAccountsImplementation;
 import com.lci.response.ValueResponse;
 import com.lci.service.pojo.response.AccountClientPojo;
 import com.lci.service.pojo.response.Accounts;
