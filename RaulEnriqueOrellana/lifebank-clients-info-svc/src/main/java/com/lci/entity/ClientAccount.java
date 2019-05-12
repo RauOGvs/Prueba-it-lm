@@ -2,6 +2,7 @@ package com.lci.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -19,6 +20,9 @@ public class ClientAccount implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="cc_client_account_id")
 	private String ccClientAccountId;
+
+	@Column(name="cc_amount")
+	private BigDecimal ccAmount;
 
 	//bi-directional many-to-one association to AccountTrasaction
 	@OneToMany(mappedBy="clientAccount")
@@ -43,6 +47,14 @@ public class ClientAccount implements Serializable {
 
 	public void setCcClientAccountId(String ccClientAccountId) {
 		this.ccClientAccountId = ccClientAccountId;
+	}
+
+	public BigDecimal getCcAmount() {
+		return this.ccAmount;
+	}
+
+	public void setCcAmount(BigDecimal ccAmount) {
+		this.ccAmount = ccAmount;
 	}
 
 	public List<AccountTrasaction> getAccountTrasactions() {

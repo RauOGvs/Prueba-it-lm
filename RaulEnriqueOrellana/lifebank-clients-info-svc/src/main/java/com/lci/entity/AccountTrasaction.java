@@ -17,9 +17,11 @@ public class AccountTrasaction implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="t_trasaction_id")
 	private String tTrasactionId;
+
+	@Column(name="t_autorization")
+	private String tAutorization;
 
 	@Column(name="t_transaction_amount")
 	private BigDecimal tTransactionAmount;
@@ -44,6 +46,14 @@ public class AccountTrasaction implements Serializable {
 
 	public void setTTrasactionId(String tTrasactionId) {
 		this.tTrasactionId = tTrasactionId;
+	}
+
+	public String getTAutorization() {
+		return this.tAutorization;
+	}
+
+	public void setTAutorization(String tAutorization) {
+		this.tAutorization = tAutorization;
 	}
 
 	public BigDecimal getTTransactionAmount() {
