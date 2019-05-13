@@ -14,7 +14,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.lci.entity.Client;
 import com.lci.entity.ClientAccount;
 import com.lci.process.GetAllAccountProcess;
-import com.lci.repository.GetAccountsImplementation;
+import com.lci.process.ValidateAccountProcess;
+import com.lci.repository.implementation.GetAccountsImplementation;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

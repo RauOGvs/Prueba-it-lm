@@ -14,15 +14,18 @@ import com.lbint.process.GetAccountProcess;
 public class GetAccountsClientController {
 
 	private GetAccountProcess process;
+
 	public GetAccountsClientController(GetAccountProcess process) {
-	
+
 		this.process = process;
-		
+
 	}
+
 	@GetMapping("/myAccounts/{ip}/{clientId}")
-	public ResponseEntity<?> getAccounts(@PathVariable("ip") String ip, @PathVariable("clientId") String clientId, @RequestHeader("Authorization") String header){
-		
+	public ResponseEntity<?> getAccounts(@PathVariable("ip") String ip, @PathVariable("clientId") String clientId,
+			@RequestHeader(value = "Authorization", required = true) String header) {
+
 		return process.getAccountData(header, ip, clientId);
 	}
-	
+
 }

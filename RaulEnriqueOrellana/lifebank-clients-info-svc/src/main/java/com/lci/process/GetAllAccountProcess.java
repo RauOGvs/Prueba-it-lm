@@ -11,7 +11,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lci.entity.Client;
 import com.lci.entity.ClientAccount;
-import com.lci.repository.GetAccountsImplementation;
+import com.lci.repository.implementation.GetAccountsImplementation;
 import com.lci.response.ValueResponse;
 import com.lci.service.pojo.response.AccountClientPojo;
 import com.lci.service.pojo.response.Accounts;
@@ -50,21 +50,21 @@ public class GetAllAccountProcess {
 					switch (c.getAccountTypeDetail().getTypeAccount().getCcTypeAccountName()) {
 
 					case "loan": {
-						loan.setId(String.valueOf(c.getAccountTypeDetail().getCcAccountTypeDetailId()));
+						loan.setId(String.valueOf(c.getAccountTypeDetail().getClientAccounts().get(0).getCcClientAccountId()));
 						loan.setName(c.getAccountTypeDetail().getCcAccountTypeDetailName());
 						listLoan.add(loan);
 						loan = new Loan();
 						break;
 					}
 					case "creditCards": {
-						cCard.setId(String.valueOf(c.getAccountTypeDetail().getCcAccountTypeDetailId()));
+						cCard.setId(String.valueOf(c.getAccountTypeDetail().getClientAccounts().get(0).getCcClientAccountId()));
 						cCard.setName(c.getAccountTypeDetail().getCcAccountTypeDetailName());
 						listCredit.add(cCard);
 						cCard = new CreditCard();
 						break;
 					}
 					case "personal": {
-						personal.setId(String.valueOf(c.getAccountTypeDetail().getCcAccountTypeDetailId()));
+						personal.setId(String.valueOf(c.getAccountTypeDetail().getClientAccounts().get(0).getCcClientAccountId()));
 						personal.setName(c.getAccountTypeDetail().getCcAccountTypeDetailName());
 						listPersonals.add(personal);
 						personal = new Personal();
@@ -78,7 +78,7 @@ public class GetAllAccountProcess {
 				accounts.setCreditCard(listCredit);
 				accounts.setPersonal(listPersonals);
 				response.setAccounts(accounts);
-				log.info("response: {}", new ObjectMapper().writeValueAsString(response));
+				log.info("Response transactions: {}", new ObjectMapper().writeValueAsString(response));
 				return new ValueResponse<AccountClientPojo>("200", response, "SUCCESS");
 			}else
 				return new ValueResponse<AccountClientPojo>("201", null, "NO DATA");

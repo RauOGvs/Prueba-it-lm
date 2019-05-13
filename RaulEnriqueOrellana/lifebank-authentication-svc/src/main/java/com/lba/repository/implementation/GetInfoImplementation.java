@@ -23,21 +23,26 @@ public class GetInfoImplementation {
 	public UsrUser getInfoUser(String userId) {
 		try {
 			Optional<UsrUser> userBd = getInfo.findById(userId);
-			return userBd.get();
+			if (userBd.isPresent()) {
+				return userBd.get();
+			}
 		} catch (Exception e) {
-			log.error("Microservicio lifebank-authentication-svc:  error: {} en linea: {} en metodo: {}", e, e.getStackTrace()[0].getLineNumber(), e.getStackTrace()[0].getMethodName());
+			log.error("Microservicio lifebank-authentication-svc:  error: {} en linea: {} en metodo: {}", e,
+					e.getStackTrace()[0].getLineNumber(), e.getStackTrace()[0].getMethodName());
 		}
 		return null;
 
 	}
+
 	public boolean updateStatus(UsrUser user) {
-		
-		return getInfo.save(user) != null ? true:false;
-		
+
+		return getInfo.save(user) != null ? true : false;
+
 	}
-public boolean save(UsrUser user) {
-		
-		return getInfo.save(user) != null ? true:false;
-		
+
+	public boolean save(UsrUser user) {
+
+		return getInfo.save(user) != null ? true : false;
+
 	}
 }
