@@ -36,11 +36,11 @@ public class TransferAccountBankProcess {
 		ClientAccount accountDestination = new ClientAccount();
 		Client client = new Client();
 		AccountTypeDetail atd = new AccountTypeDetail();
+		AccountTypeDetail atdD = new AccountTypeDetail();
 		String accountIdOrigin =request.getAccountIdOrigin();
 		String accountIdDestination = request.getAccountIdDestination();
 		double amount = request.getAmount();
 		String clientId = request.getClientId();
-		int typeAccount = request.getTypeAccount();
 		double amountOrigin = request.getAmountOrigin();
 		double amountDestination = request.getAmountDestination();
 		StringBuilder  sb = new StringBuilder();
@@ -48,13 +48,14 @@ public class TransferAccountBankProcess {
 			log.info("Request: {}", new ObjectMapper().writeValueAsString(request));
 			client.setCcClientId(clientId);
 
-			atd.setCcAccountTypeDetailId(typeAccount);
+			atd.setCcAccountTypeDetailId(request.getTypeAccountOrigin());
 			accountOrigin.setAccountTypeDetail(atd);
 			accountOrigin.setClient(client);
 			accountOrigin.setCcClientAccountId(accountIdOrigin);
 			accountOrigin.setCcAmount(BigDecimal.valueOf(amountOrigin - amount));
 
-			accountDestination.setAccountTypeDetail(atd);
+			atdD.setCcAccountTypeDetailId(request.getTypeAccountDestinations());
+			accountDestination.setAccountTypeDetail(atdD);
 			accountDestination.setClient(client);
 			accountDestination.setCcClientAccountId(accountIdDestination);
 			accountDestination.setCcAmount(BigDecimal.valueOf(amountDestination + amount));

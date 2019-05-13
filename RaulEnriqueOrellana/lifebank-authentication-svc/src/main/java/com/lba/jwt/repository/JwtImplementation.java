@@ -28,7 +28,7 @@ public class JwtImplementation implements IJwt {
 	@Override
 	public String generateJwt(String userId, String ip) {
 		String token = Jwts.builder().setSubject(userId).claim("userId", userId).claim("ip", ip)
-				.setExpiration(new Date(System.currentTimeMillis() + 600000)).signWith(SignatureAlgorithm.HS512, env.getProperty("service.jwt.signature"))
+				.setExpiration(new Date(System.currentTimeMillis() + 1800000)).signWith(SignatureAlgorithm.HS512, env.getProperty("service.jwt.signature"))
 				.compact();
 
 		return token;

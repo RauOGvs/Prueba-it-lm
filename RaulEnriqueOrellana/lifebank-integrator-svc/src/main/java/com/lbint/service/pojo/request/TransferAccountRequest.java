@@ -1,10 +1,11 @@
-package com.lci.service.pojo.request;
+package com.lbint.service.pojo.request;
 
-public class TransferAccountRequest2 {
+public class TransferAccountRequest {
 
 	private String accountOrigin;
 	private String accountDestination;
 	private double accountAmount;
+	private String ip;
 	public String getAccountOrigin() {
 		return accountOrigin;
 	}
@@ -22,6 +23,12 @@ public class TransferAccountRequest2 {
 	}
 	public void setAccountAmount(double accountAmount) {
 		this.accountAmount = accountAmount;
+	}
+	public String getIp() {
+		return ip;
+	}
+	public void setIp(String ip) {
+		this.ip = ip;
 	}
 	
 	

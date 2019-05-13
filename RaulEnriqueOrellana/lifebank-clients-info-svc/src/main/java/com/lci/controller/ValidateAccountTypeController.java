@@ -6,22 +6,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lci.process.ValidateAccountProcess;
+import com.lci.process.ValidateAccountTypeProcess;
 import com.lci.response.ValueResponse;
-import com.lci.service.pojo.response.AccountClientPojo;
-import com.lci.service.pojo.response.ClientAccountResponse;
 
 @RestController
 @RequestMapping("/account")
-public class ValidateAccountController {
+public class ValidateAccountTypeController {
 
-	private ValidateAccountProcess process;
+	private ValidateAccountTypeProcess process;
 
-	public ValidateAccountController(ValidateAccountProcess process) {
+	public ValidateAccountTypeController(ValidateAccountTypeProcess process) {
 		this.process = process;
 	}
 
-	@GetMapping("/validateAccountType/{accountID}")
-	public ValueResponse<ClientAccountResponse> validateAccounts(@PathVariable("accountID") String accountID) {
+	@GetMapping("/validateAccount/{accountID}")
+	public ValueResponse<String> validateAccountsType(@PathVariable("accountID") String accountID) {
 
 		return process.validateAccountProcess(accountID);
 	}

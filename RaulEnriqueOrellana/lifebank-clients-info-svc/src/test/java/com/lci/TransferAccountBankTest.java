@@ -18,9 +18,10 @@ public class TransferAccountBankTest {
 
 	@Test
 	public void transferBank() {
-		
+
 		try {
-			process.transferAccountProcess( new TransferAccountRequest("048360533-2", "048360533-1", 150, "048360533", 5, 550, 600));
+			process.transferAccountProcess(new TransferAccountRequest("048360533-2", "048360533-1", new Double(25),
+					"048360533", 5, 6, new Double(600), new Double(700)));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -1,6 +1,6 @@
-package com.lci.service.pojo.request;
+package com.lbint.service.pojo.request;
 
-public class TransferAccountRequest {
+public class TransferAccountPojo {
 
 	private String accountIdOrigin;
 	private String accountIdDestination;
@@ -11,7 +11,7 @@ public class TransferAccountRequest {
 	private Double amountOrigin; 
 	private Double amountDestination;
 	
-	public TransferAccountRequest(String accountIdOrigin, String accountIdDestination, Double amount, String clientId,
+	public TransferAccountPojo(String accountIdOrigin, String accountIdDestination, Double amount, String clientId,
 			Integer typeAccountOrigin, Integer typeAccountDestinations, Double amountOrigin, Double amountDestination) {
 		super();
 		this.accountIdOrigin = accountIdOrigin;
@@ -24,7 +24,7 @@ public class TransferAccountRequest {
 		this.amountDestination = amountDestination;
 	}
 
-	public TransferAccountRequest() {
+	public TransferAccountPojo() {
 	}
 	
 	public Integer getTypeAccountOrigin() {

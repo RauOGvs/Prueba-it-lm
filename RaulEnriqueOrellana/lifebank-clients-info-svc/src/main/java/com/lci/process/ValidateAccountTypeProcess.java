@@ -8,38 +8,30 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lci.entity.ClientAccount;
 import com.lci.repository.implementation.ValidateAccountImplementation;
 import com.lci.response.ValueResponse;
-import com.lci.service.pojo.response.ClientAccountResponse;
 
 @Service
-public class ValidateAccountProcess {
+public class ValidateAccountTypeProcess {
 
 	private Logger log;
 	private ValidateAccountImplementation validateAccount;
 
-	public ValidateAccountProcess(ValidateAccountImplementation validateAccount) {
+	public ValidateAccountTypeProcess(ValidateAccountImplementation validateAccount) {
 		this.log = LoggerFactory.getLogger(getClass());
 		this.validateAccount = validateAccount;
 	}
 
-	public ValueResponse<ClientAccountResponse> validateAccountProcess(String accountID) {
-		
-			ClientAccountResponse clientAccount = new ClientAccountResponse();
-		
+	public ValueResponse<String> validateAccountProcess(String accountID) {
+
 		try {
 			log.info("Entrada: {}", accountID);
 			ClientAccount account = validateAccount.getAccount(accountID);
-			
+
 			if (account != null) {
-				clientAccount.setAccountID(account.getCcClientAccountId());
-				clientAccount.setClientID(account.getClient().getCcClientId());
-				clientAccount.setTypeAccount(account.getAccountTypeDetail().getTypeAccount().getCcTypeAccountName());
-				clientAccount.setAmount(Double.valueOf(account.getCcAmount().toString()));
-				clientAccount.setTypeAccountInt(account.getAccountTypeDetail().getCcAccountTypeDetailId());
-				ValueResponse<ClientAccountResponse> response = new ValueResponse<>("200", clientAccount, "OK");
+				ValueResponse<String> response = new ValueResponse<>("200", account.getClient().getCcClientId(), "OK");
 				log.info("response: {}", new ObjectMapper().writeValueAsString(response));
 				return response;
 			} else {
-				ValueResponse<ClientAccountResponse> response = new ValueResponse<>("201", null, "NO DATA");
+				ValueResponse<String> response = new ValueResponse<>("201", null, "NO DATA");
 				log.info("response: {}", new ObjectMapper().writeValueAsString(response));
 				return response;
 			}

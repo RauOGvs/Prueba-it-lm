@@ -40,7 +40,7 @@ public class TransferAccountController {
 				return response;
 			}
 		} catch (Exception e) {
-			response = new ValueResponse<>("201", null, "NO DATA");
+			response = new ValueResponse<>("500", null, "NO DATA");
 			log.error("Microservicio: lifebank-clients-info-svc: error: {} en linea: {} en metodo: {}", e,
 					e.getStackTrace()[0].getLineNumber(), e.getStackTrace()[0].getMethodName());
 			return response;
